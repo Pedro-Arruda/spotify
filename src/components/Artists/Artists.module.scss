@@ -1,0 +1,39 @@
+.section-artists {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  padding: 1rem 0;
+
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+  }
+}
+
+.artists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.artists-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+  border-radius: 10px;
+
+  img {
+    border-radius: 100%;
+  }
+
+  background-color: rgb(35, 34, 34);
+  color: #fff;
+
+  p {
+    color: rgb(163, 162, 162);
+  }
+}

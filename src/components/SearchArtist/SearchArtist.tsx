@@ -1,6 +1,6 @@
 import { FormEvent } from "react";
 import { FaSearch } from "react-icons/fa";
-import styles from "./Search.module.scss";
+import styles from "./SearchArtist.module.scss";
 
 interface SearchProps {
   inputSearch: string;
@@ -8,7 +8,7 @@ interface SearchProps {
   onSubmit: () => void;
 }
 
-export const Search = ({
+export const SearchArtist = ({
   inputSearch,
   setInputSearch,
   onSubmit,
