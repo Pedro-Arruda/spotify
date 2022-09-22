@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom";
 import styles from "./Cards.module.scss";
 
-export const Cards = ({ items }: any) => {
+interface CardsProps {
+  items: any[];
+}
+
+export const Cards = ({ items }: CardsProps) => {
+  console.log(items);
   return (
     <div className={styles["card-container"]}>
-      {items !== "" ? (
+      {items.length > 0 ? (
         items.map((card: any, index: any) => (
           <Link
             to={`details/${card.id}`}

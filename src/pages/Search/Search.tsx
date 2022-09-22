@@ -48,6 +48,7 @@ export const Search = () => {
       .then((response) => response.json())
       .then((data) => {
         artistId = data.artists.items[0].id;
+        console.log(artistId);
       });
 
     await fetch(

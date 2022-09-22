@@ -1,5 +1,6 @@
 import styles from "./TopArtists.module.scss";
 import { TopArtistsItems } from "../../utils/principais";
+import { Link } from "react-router-dom";
 
 export const TopArtists = () => {
   return (

@@ -1,6 +1,5 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { Layout } from "./components/Layout/Layout";
-import { Album } from "./pages/Album/Album";
+import { Route, Routes } from "react-router-dom";
+import { AlbumDetails } from "./pages/AlbumDetails/AlbumDetails";
 import { Home } from "./pages/Home/Home";
 import { Search } from "./pages/Search/Search";
 
@@ -9,7 +8,7 @@ export const Router = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/search/details/:id" element={<Album />} />
+      <Route path="/search/details/:id" element={<AlbumDetails />} />
     </Routes>
   );
 };
