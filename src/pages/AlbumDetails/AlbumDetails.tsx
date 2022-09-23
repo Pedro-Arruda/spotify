@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Layout } from "../../components/Layout/Layout";
 import styles from "./AlbumDetails.module.scss";
+import notFound from "../../assets/notfound.png";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Album {
   id: string;
@@ -25,45 +27,23 @@ interface Album {
 }
 
 export const AlbumDetails = () => {
+  const { auth } = useAuth();
   const params = useParams();
   const [album, setAlbum] = useState<Album | null>(null);
-
-  const [accessToken, setAccessToken] = useState("");
-
-  const client_id = "08f5cbeae6f04906851ec89f964c31eb";
-  const client_secret = "8770285b5d404f00a737c86c86591924";
-
-  useEffect(() => {
-    let authParams = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body:
-        "grant_type=client_credentials&client_id=" +
-        client_id +
-        "&client_secret=" +
-        client_secret,
-    };
-
-    fetch("https://accounts.spotify.com/api/token", authParams)
-      .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token));
-  }, []);
 
   useEffect(() => {
     let searchParams = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${auth!.access_token}`,
       },
     };
 
     fetch(`https://api.spotify.com/v1/albums/${params.id}`, searchParams)
       .then((response) => response.json())
       .then((data) => setAlbum(data));
-  }, [accessToken]);
+  }, [params.id]);
 
   const convertDurationToTimeString = (duration: number) => {
     const minutes = Math.floor((duration / 60000) % 60);
@@ -81,7 +61,12 @@ export const AlbumDetails = () => {
       <div className={styles["header"]}>
         {album ? (
           <>
-            <img src={album.images[0].url} alt="" width={250} />
+            {album.images[0] ? (
+              <img src={album.images[0].url} alt="" width={250} />
+            ) : (
+              <img src={notFound} alt="" width={250} />
+            )}
+
             <div className={styles["album-info"]}>
               <p>Album</p>
               <h1>{album.name}</h1>

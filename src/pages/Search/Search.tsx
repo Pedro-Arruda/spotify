@@ -1,41 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Cards } from "../../components/Cards/Cards";
 import { Layout } from "../../components/Layout/Layout";
 import { SearchArtist } from "../../components/SearchArtist/SearchArtist";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Search = () => {
+  const { auth } = useAuth();
   const [inputSearch, setInputSearch] = useState("");
   const [items, setItems] = useState([]);
-
-  const [accessToken, setAccessToken] = useState("");
-
-  const client_id = "08f5cbeae6f04906851ec89f964c31eb";
-  const client_secret = "8770285b5d404f00a737c86c86591924";
-
-  useEffect(() => {
-    let authParams = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body:
-        "grant_type=client_credentials&client_id=" +
-        client_id +
-        "&client_secret=" +
-        client_secret,
-    };
-
-    fetch("https://accounts.spotify.com/api/token", authParams)
-      .then((result) => result.json())
-      .then((data) => setAccessToken(data.access_token));
-  }, []);
 
   const handleSubmit = async () => {
     let searchParams = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${auth!.access_token}`,
       },
     };
 

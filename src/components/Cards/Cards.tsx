@@ -6,7 +6,6 @@ interface CardsProps {
 }
 
 export const Cards = ({ items }: CardsProps) => {
-  console.log(items);
   return (
     <div className={styles["card-container"]}>
       {items.length > 0 ? (

@@ -8,7 +8,11 @@ export const TopArtists = () => {
       <h1>Seus artistas mais ouvidos</h1>
       <div className={styles["top-artists"]}>
         {TopArtistsItems.map((artist, index) => (
-          <div className={styles["top-artists-card"]} key={index}>
+          <Link
+            to={`search/details/${artist.id}`}
+            className={styles["top-artists-card"]}
+            key={index}
+          >
             <img
               src={artist.image.url}
               alt={artist.image.alt}
@@ -16,7 +20,7 @@ export const TopArtists = () => {
               height={"100%"}
             />
             <h3>{artist.name}</h3>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
