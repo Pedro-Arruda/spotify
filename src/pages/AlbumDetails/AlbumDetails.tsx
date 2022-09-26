@@ -4,6 +4,7 @@ import { Layout } from "../../components/Layout/Layout";
 import styles from "./AlbumDetails.module.scss";
 import notFound from "../../assets/notfound.png";
 import { useAuth } from "../../hooks/useAuth";
+import { fetchAuth } from "../../functions/fetchAuth";
 
 interface Album {
   id: string;
@@ -27,20 +28,15 @@ interface Album {
 }
 
 export const AlbumDetails = () => {
-  const { auth } = useAuth();
+  const { auth, updateAuth } = useAuth();
   const params = useParams();
   const [album, setAlbum] = useState<Album | null>(null);
 
   useEffect(() => {
-    let searchParams = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${auth!.access_token}`,
-      },
-    };
-
-    fetch(`https://api.spotify.com/v1/albums/${params.id}`, searchParams)
+    fetchAuth(`https://api.spotify.com/v1/albums/${params.id}`, {
+      auth,
+      updateAuth,
+    })
       .then((response) => response.json())
       .then((data) => setAlbum(data));
   }, [params.id]);

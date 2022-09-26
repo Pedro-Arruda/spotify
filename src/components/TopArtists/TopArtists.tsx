@@ -9,7 +9,7 @@ export const TopArtists = () => {
       <div className={styles["top-artists"]}>
         {TopArtistsItems.map((artist, index) => (
           <Link
-            to={`search/details/${artist.id}`}
+            to={`artist/details/${artist.id}`}
             className={styles["top-artists-card"]}
             key={index}
           >

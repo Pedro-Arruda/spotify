@@ -1,14 +1,16 @@
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
+import {
+  CLIENT_ID,
+  CLIENT_SECRET,
+  LOCAL_STORAGE_KEY,
+} from "../utils/constants";
 
-const CLIENT_ID = "08f5cbeae6f04906851ec89f964c31eb";
-const CLIENT_SECRET = "8770285b5d404f00a737c86c86591924";
-const LOCAL_STORAGE_KEY = "SPOTIFY_AUTH";
-
-interface AuthProps {
+export interface AuthProps {
   access_token: string;
+  expiresAt: number;
 }
 
-interface AuthContextData {
+export interface AuthContextData {
   auth: AuthProps | null;
   updateAuth: (auth: AuthProps | null) => void;
 }
@@ -42,7 +44,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       try {
         const authData = JSON.parse(storageData);
 
-        if (authData.access_token) {
+        if (authData.access_token && authData.expiresAt) {
           updateAuth(authData);
         } else {
           updateAuth(null);
@@ -69,7 +71,12 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
       fetch("https://accounts.spotify.com/api/token", authParams)
         .then((result) => result.json())
-        .then((data) => updateAuth({ access_token: data.access_token }))
+        .then((data) =>
+          updateAuth({
+            access_token: data.access_token,
+            expiresAt: Date.now() + 3600 * 100,
+          })
+        )
         .catch((err) => {
           console.error(err);
           updateAuth(null);

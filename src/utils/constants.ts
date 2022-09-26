@@ -1,0 +1,3 @@
+export const CLIENT_ID = "08f5cbeae6f04906851ec89f964c31eb";
+export const CLIENT_SECRET = "8770285b5d404f00a737c86c86591924";
+export const LOCAL_STORAGE_KEY = "SPOTIFY_AUTH";
