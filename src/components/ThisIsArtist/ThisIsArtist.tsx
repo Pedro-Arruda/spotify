@@ -1,5 +1,6 @@
 import styles from "./ThisIsArtist.module.scss";
 import { ThisIsArtistsItems } from "../../utils/thisIsArtists";
+import { Link } from "react-router-dom";
 
 export const ThisIsArtist = () => {
   return (
@@ -7,17 +8,19 @@ export const ThisIsArtist = () => {
       <h1>O melhor de cada artista</h1>
       <div className={styles["recents-artists"]}>
         {ThisIsArtistsItems.map((artist, index) => (
-          <div className={styles["recents-artists-card"]} key={index}>
+          <Link
+            to={`/artist/details/${artist.id}`}
+            className={styles["recents-artists-card"]}
+            key={index}
+          >
             <img
               src={artist.image.url}
               alt={artist.image.alt}
               width={180}
               height={180}
             />
-            <div>
-              <h4>{artist.name}</h4>
-            </div>
-          </div>
+            <h4>{artist.name}</h4>
+          </Link>
         ))}
       </div>
     </section>
