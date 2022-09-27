@@ -10,13 +10,19 @@ interface CardsProps {
 export const Cards = ({ items, artist }: CardsProps) => {
   return (
     <div className={styles["card-container"]}>
-      <Link
-        to={`/artist/details/${artist?.artists.items[0].id}`}
-        className={styles["card-artist"]}
-      >
-        <img src={artist?.artists.items[0].images[0].url} alt="img do album" />
-        <h3>{artist?.artists.items[0].name}</h3>
-      </Link>
+      {artist && (
+        <Link
+          to={`/artist/details/${artist?.artists.items[0].id}`}
+          className={styles["card-artist"]}
+        >
+          <img
+            src={artist?.artists.items[0].images[0].url}
+            alt="img do album"
+          />
+          <h3>{artist?.artists.items[0].name}</h3>
+        </Link>
+      )}
+
       {items.length > 0 ? (
         items.map((card: any, index: any) => (
           <Link

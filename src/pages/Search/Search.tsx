@@ -31,7 +31,6 @@ export const Search = () => {
       .then((response) => response.json())
       .then((data) => {
         setArtist(data);
-        console.log("artistas", artist?.artists.items);
 
         artistId = data.artists.items[0].id;
       });

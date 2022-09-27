@@ -85,7 +85,7 @@ export const Artist = () => {
       {artist ? (
         <>
           <div className={styles["header-artist"]}>
-            <img src={artist.images[0].url} alt="" width={250} height={200} />
+            <img src={artist.images[0].url} alt="" width={200} height={200} />
             <div className={styles["artist-info"]}>
               <h1>{artist.name}</h1>
               <p>{artist.followers.total} ouvintes mensais</p>
@@ -111,25 +111,28 @@ export const Artist = () => {
               )}
             </div>
           </div>
-          <div className={styles["card-container"]}>
-            {albums && albums?.length > 0 ? (
-              albums.map((card, index) => (
-                <Link
-                  to={`/details/${card.id}`}
-                  className={styles["card"]}
-                  key={index}
-                >
-                  <img
-                    src={card.images[0].url}
-                    alt="img do album"
-                    width="90%"
-                  />
-                  <h3>{card.name}</h3>
-                </Link>
-              ))
-            ) : (
-              <h1>nenhuma album encontrado</h1>
-            )}
+          <div className={styles["section-albums"]}>
+            <h1>Discografia</h1>
+            <div className={styles["card-container"]}>
+              {albums && albums?.length > 0 ? (
+                albums.map((card, index) => (
+                  <Link
+                    to={`/details/${card.id}`}
+                    className={styles["card"]}
+                    key={index}
+                  >
+                    <img
+                      src={card.images[0].url}
+                      alt="img do album"
+                      width="90%"
+                    />
+                    <h3>{card.name}</h3>
+                  </Link>
+                ))
+              ) : (
+                <h1>nenhuma album encontrado</h1>
+              )}
+            </div>
           </div>
         </>
       ) : (

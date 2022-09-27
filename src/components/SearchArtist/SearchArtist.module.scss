@@ -1,6 +1,10 @@
 .header {
   display: flex;
 
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+
   color: #000;
   height: 80px;
   padding: 3rem 0;

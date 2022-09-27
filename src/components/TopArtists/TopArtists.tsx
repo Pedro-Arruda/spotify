@@ -17,7 +17,7 @@ export const TopArtists = () => {
               src={artist.image.url}
               alt={artist.image.alt}
               width={90}
-              height={"100%"}
+              height={90}
             />
             <h3>{artist.name}</h3>
           </Link>

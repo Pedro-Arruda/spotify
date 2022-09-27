@@ -6,6 +6,17 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
 li,
 a {
   list-style: none;
